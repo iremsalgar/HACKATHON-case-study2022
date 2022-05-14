@@ -3,6 +3,9 @@ from dataclasses import dataclass
 import hashlib 
 # datetima kutuphanesinden datetime ve date import et
 from datetime import datetime, date
+from platform import node
+from this import d
+from typing_extensions import Self
 from key import veri_sifrele, veri_coz
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
@@ -11,34 +14,31 @@ print("Hash olusturma icin = 1")
 print("Hash Kontrol icin = 2")
 print("Hash çözümleme icin = 3")
 class block_data:
-	def __init__(self, zaman, data, eski_hash):
+	def __init__(self, zaman, data, eski_hash = "0"):
 		self.zaman = zaman
 		self.data = data
-		self.eski_hash = eski_hash
-		self.hash = 
+		self.eski_hash = eski_hash 
+		self.hash = get_hash()
+
+	def get_hash(self):
+		return 	veri_sifrele((self.zaman, self.data, self. eski_hash).encode(), \
+		(PKCS1_OAEP.new(RSA.import_key(open('public_key.pem').read()))))
 
 
-class Block:
-	def __init__(self, eski_hash='0'):
-		self.veri = block_data() = input("Hash oluşturmak icin input giriniz :")
-		self.zaman = datetime.now()
-		self.eski_hash = eski_hash
-		self.hash = self.yeni_hash()
-
-	def yeni_hash(self):
-		veri = '-'.join(map(str,self.veri))
-		public_key=  RSA.import_key(open('public_key.pem').read())
-		hashable_data = (veri + self.zaman.isoformat() + self.eski_hash).encode()
-		block_hash = veri_sifrele(hashable_data, PKCS1_OAEP.new(public_key)).upper()
-		return block_hash
-	
-	def çalıştır(self):
-		print(self.hash)
-		a = self.hash
-		f = open("d.txt", "ab") # open =  dosya acma 'a' dosyaya veri ekleme
-		f.write(a+"\n".encode()) # dosyaya veri eklenen yer 
-		f.close() #dosyadan cikmak icin 
-class Test: #  kolaylik olması ve kafa karismamasi icin case olusturuldu
+class Block_chain:
+	def __init__(self):
+		self.chain= [self.genessisblock()]
+	def genessisblock(self):
+		return block_data(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"), {"first data"}, "")
+	def block_ekle(self, data{})
+		node= block_data(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),data, self.chain[-1].hash)
+		self.chain.node
+	def kontrol(self)
+		for i in range(len(Self.chain))
+			if i != 0
+				ilk = self.chain[i-1].hash
+				suan = self.chain[i].previous
+class Test: #  kolaylik olması ve kafa karismamasi icin switch case olusturuldu
 	def inp(self, inp):
 		return getattr(self, ('case_' + str(inp)))()# icine yazılan paremetre ile birleştiyor 
 	def case_1(self):
@@ -65,4 +65,5 @@ class Test: #  kolaylik olması ve kafa karismamasi icin case olusturuldu
 # main dosyası 
 if __name__ == '__main__':
 	case = Test()
-	case.inp(input(""))
+	while(1)
+		case.inp(input(""))
