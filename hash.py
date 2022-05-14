@@ -8,6 +8,7 @@ from Crypto.Cipher import PKCS1_OAEP
 #kolaylık olması icin bir case olusturuldu 
 print("Hash olusturma icin = 1")
 print("Hash Kontrol icin = 2")
+print("Hash çözümleme icin = 3")
 class Block:
 	def __init__(self, eski_hash='0'):
 		self.veri = self.veri_olustur = input("Hash oluşturmak icin input giriniz :")
@@ -50,10 +51,10 @@ class Test: #  kolaylik olması ve kafa karismamasi icin case olusturuldu
 		f.close()
 		#--------------------------------------------------------
 	def case_3(self):
-		veri_dosyasi = open("./d.txt", "r")
-		veri = veri_dosyasi.read()
-		cozulmus_veri = veri_coz(veri,  PKCS1_OAEP.new(RSA.import_key(open('private_key.pem').read())))
-		print(cozulmus_veri)
+		girdi = input("")
+		sifreli_veri = veri_sifrele(girdi.encode(), PKCS1_OAEP.new(RSA.import_key(open('public_key.pem').read())))
+		cozumlenmis_veri = veri_coz(sifreli_veri, PKCS1_OAEP.new(RSA.import_key(open('private_key.pem').read())))
+		print(cozumlenmis_veri)
 
 
 # main dosyası 
