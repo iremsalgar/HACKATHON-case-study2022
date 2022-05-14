@@ -4,7 +4,7 @@ import base64
 
 def generate_keys():
 	modulus_length = 256*4
-    privatekey = RSA.generate(modulus_length, Random.new().read)
+    privatekey = RSA.generate(modulus_length)
 	publickey = privatekey.publickey()
 
 	return privatekey, publickey
