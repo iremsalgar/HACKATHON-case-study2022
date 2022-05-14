@@ -1,4 +1,5 @@
 # kutuphaneyi import et
+from dataclasses import dataclass
 import hashlib 
 # datetima kutuphanesinden datetime ve date import et
 from datetime import datetime, date
@@ -9,21 +10,25 @@ from Crypto.Cipher import PKCS1_OAEP
 print("Hash olusturma icin = 1")
 print("Hash Kontrol icin = 2")
 print("Hash çözümleme icin = 3")
+class block_data:
+	def __init__(self, zaman, data, eski_hash):
+		self.zaman = zaman
+		self.data = data
+		self.eski_hash = eski_hash
+		self.hash = 
+
+
 class Block:
 	def __init__(self, eski_hash='0'):
-		self.veri = self.veri_olustur = input("Hash oluşturmak icin input giriniz :")
+		self.veri = block_data() = input("Hash oluşturmak icin input giriniz :")
 		self.zaman = datetime.now()
-		self.onceki_hash = eski_hash
+		self.eski_hash = eski_hash
 		self.hash = self.yeni_hash()
-
-	def veri_olustur(self, urun):
-		self.urun = urun
-		return (urun)
 
 	def yeni_hash(self):
 		veri = '-'.join(map(str,self.veri))
 		public_key=  RSA.import_key(open('public_key.pem').read())
-		hashable_data = (veri + self.zaman.isoformat() + self.onceki_hash).encode()
+		hashable_data = (veri + self.zaman.isoformat() + self.eski_hash).encode()
 		block_hash = veri_sifrele(hashable_data, PKCS1_OAEP.new(public_key)).upper()
 		return block_hash
 	
