@@ -12,3 +12,4 @@ Kullanılan dil: phyton
 Sürüm: 3
 
 Kullandığımız kütüphaneler: hashlib, crypto, datetime.
+Not: MacOs crypto kütüphanesini desteklememekte.
