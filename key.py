@@ -10,7 +10,7 @@ def generate_keys():
 	return privatekey, publickey
 
 def veri_sifrele(data , publickey):
-	encrypted_data = publickey.encrypt(data, 32)[0]
+	encrypted_data = publickey.encrypt(data)
 	encoded_encrypted_data = base64.b64encode(encrypted_data)
 	return encoded_encrypted_data
 
@@ -20,9 +20,9 @@ def veri_coz(encoded_encrypted_data, privatekey):
 	return decoded_decrypted_data
 
 private_key, public_key = generate_keys()
-pr_file = open("./private_key", "wb")
+pr_file = open("./private_key.pem", "wb")
 pr_file.write((private_key).exportKey())
 pr_file.close()
-pb_file = open("./public_key", "wb")
+pb_file = open("./public_key.pem", "wb")
 pb_file.write(public_key.exportKey())
 pb_file.close()

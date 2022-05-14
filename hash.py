@@ -4,6 +4,7 @@ import hashlib
 from datetime import datetime, date
 from key import veri_sifrele, veri_coz
 from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
 #kolaylık olması icin bir case olusturuldu 
 print("Hash olusturma icin = 1")
 print("Hash Kontrol icin = 2")
@@ -20,17 +21,16 @@ class Block:
 
 	def yeni_hash(self):
 		veri = '-'.join(map(str,self.veri))
-		public_key_file = open("./public_key", "r") # ./public_key dosyasini acip 'r' =  read 
-		public_key=  RSA.importKey(public_key_file.read())
+		public_key=  RSA.import_key(open('public_key.pem').read())
 		hashable_data = (veri + self.zaman.isoformat() + self.onceki_hash).encode()
-		block_hash = veri_sifrele(hashable_data,public_key)
-		return block_hash.hexdigest()
+		block_hash = veri_sifrele(hashable_data, PKCS1_OAEP.new(public_key)).upper()
+		return block_hash
 	
 	def çalıştır(self):
 		print(self.hash)
 		a = self.hash
-		f = open("d.txt", "a") # open =  dosya acma 'a' dosyaya veri ekleme
-		f.write(a+"\n") # dosyaya veri eklenen yer 
+		f = open("d.txt", "ab") # open =  dosya acma 'a' dosyaya veri ekleme
+		f.write(a+"\n".encode()) # dosyaya veri eklenen yer 
 		f.close() #dosyadan cikmak icin 
 class Test: #  kolaylik olması ve kafa karismamasi icin case olusturuldu
 	def inp(self, inp):
@@ -50,7 +50,11 @@ class Test: #  kolaylik olması ve kafa karismamasi icin case olusturuldu
 		f.close()
 		#--------------------------------------------------------
 	def case_3(self):
-		veri_coz(veri, private_key)
+		veri_dosyasi = open("./d.txt", "r")
+		veri = veri_dosyasi.read()
+		cozulmus_veri = veri_coz(veri,  PKCS1_OAEP.new(RSA.import_key(open('private_key.pem').read())))
+		print(cozulmus_veri)
+
 
 # main dosyası 
 if __name__ == '__main__':
