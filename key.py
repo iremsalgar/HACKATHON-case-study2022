@@ -18,3 +18,11 @@ def veri_coz(encoded_encrypted_data, privatekey):
 	decoded_encrypted_data = base64.b64decode(encoded_encrypted_data)
 	decoded_decrypted_data = privatekey.decrypt(decoded_encrypted_data)
 	return decoded_decrypted_data
+
+private_key, public_key = generate_keys()
+pr_file = open("./private_key", "w")
+pr_file.write(private_key)
+pr_file.close()
+pb_file = open("./public_key", "w")
+pb_file.write(public_key)
+pb_file.close()

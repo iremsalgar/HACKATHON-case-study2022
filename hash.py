@@ -2,6 +2,7 @@
 import hashlib 
 # datetima kutuphanesinden datetime ve date import et
 from datetime import datetime, date
+import key.py
 #kolaylık olması icin bir case olusturuldu 
 print("Hash olusturma icin = 1")
 print("Hash Kontrol icin = 2")
@@ -19,7 +20,7 @@ class Block:
 	def yeni_hash(self):
 		veri = '-'.join(map(str,self.veri))
 		hashable_data = (veri + self.zaman.isoformat() + self.onceki_hash).encode()
-		block_hash = hashlib.sha256(hashable_data)
+		block_hash = veri_sifrele(hashable_data)
 		return block_hash.hexdigest()
 	
 	def çalıştır(self):
