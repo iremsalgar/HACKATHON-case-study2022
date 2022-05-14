@@ -20,9 +20,9 @@ def veri_coz(encoded_encrypted_data, privatekey):
 	return decoded_decrypted_data
 
 private_key, public_key = generate_keys()
-pr_file = open("./private_key", "w")
+pr_file = open("./private_key", "wb")
 pr_file.write(private_key)
 pr_file.close()
-pb_file = open("./public_key", "w")
+pb_file = open("./public_key", "wb")
 pb_file.write(public_key)
 pb_file.close()
