@@ -1,0 +1,226 @@
+body {
+  background-color: #82c2fa;
+  font-family: 'Luckiest Guy';
+  font-weight: 400;
+  font-size: 24px;
+  color: #555;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Title */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Luckiest Guy';
+  font-weight: 700;
+  color: rgb(14, 12, 12);
+}
+
+h1 {
+  font-family: 'Luckiest Guy';
+  font-size: 35px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* Paragraph */
+
+p {
+  line-height: 28px;
+  margin-bottom: 25px;
+  font-size: 16px;
+}
+
+.centered {
+  text-align: center;
+}
+
+/* Link */
+
+a {
+  color: #1abc9c;
+  word-wrap: break-word;
+  -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+  -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+  -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+  -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+  transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+a:hover, a:focus {
+  color: #7b7b7b;
+  text-decoration: none;
+  outline: 0;
+}
+
+a:before, a:after {
+  -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+  -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+  -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+  -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+  transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.navbar {
+  text-transform: uppercase;
+  margin-bottom: 0px;
+}
+
+.navbar-inverse {
+  padding: 30px 0;
+}
+
+@media (max-width: 768px ) {
+  .navbar-inverse {
+    padding: 15px 0;
+  }
+}
+.navbar-inverse {
+  background-color: #1a7bbc;
+  border-color: #4f5453;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+  color: #222222;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 2px;
+}
+
+.navbar-inverse .navbar-brand {
+  color: white;
+}
+
+.navbar-inverse .navbar-toggle {
+  border-color: transparent;
+}
+
+.progress-bar-theme {
+  background-color: #1abc9c;
+}
+
+/* Helper */
+
+.mt {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.pt {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+/*Tester Page*/
+
+#grey {
+  font-family: 'Montserrat';
+  padding-top: 60px;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+#white {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: #ffffff;
+}
+
+/* Tester Quote */
+.bq {
+  font-size: 22px;
+  padding-top: 30px;
+}
+
+/* glyphicon Configuration */
+
+.glyphicon {
+  font-size: 40px;
+  color: #1abc9c;
+}
+
+
+@-webkit-keyframes animate-loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/*controler kit*/
+
+/* message box */
+#message {
+  font-family: 'Luckiest Guy';
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#message p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+
+#test {
+  font-family: 'Luckiest Guy';
+  color: rgba(19, 18, 18, 0.9);
+}
+
+/* green right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+  content: "✔";
+}
+
+/*"x"wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "✖";
+}
