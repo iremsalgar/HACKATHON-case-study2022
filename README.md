@@ -11,4 +11,4 @@ SHA-256 işimize yaramadığı için kendi algoritmamızı kendimiz yazmaya kada
 Kullanılan dil: phyton 
 Sürüm: 3
 
-Kullandığımız kütüphaneler: hashlib, fenret, datetime.
+Kullandığımız kütüphaneler: hashlib, crypto, datetime.
