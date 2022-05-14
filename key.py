@@ -4,7 +4,7 @@ import base64
 
 def generate_keys():
 	modulus_length = 256*4
-	privatekey = RSA.generate(modulus_length)
+	privatekey = RSA.generate(modulus_length, Random.new().read)
 	publickey = privatekey.publickey()
 
 	return privatekey, publickey
@@ -21,8 +21,8 @@ def veri_coz(encoded_encrypted_data, privatekey):
 
 private_key, public_key = generate_keys()
 pr_file = open("./private_key", "wb")
-pr_file.write(private_key)
+pr_file.write((private_key).exportKey())
 pr_file.close()
 pb_file = open("./public_key", "wb")
-pb_file.write(public_key)
+pb_file.write(public_key.exportKey())
 pb_file.close()
