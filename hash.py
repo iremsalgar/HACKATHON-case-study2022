@@ -2,7 +2,6 @@
 # datetima kutuphanesinden datetime ve date import et
 from datetime import datetime
 import hashlib
-#kolaylık olması icin bir case olusturuldu 
 print("blok olusturma icin = 1")
 print("block Kontrol icin = 2")
 print("block çözümleme icin = 3")
@@ -11,7 +10,7 @@ class datas:
 	def __init__(self, urun_bilgisi, kullanıcı_kimliği, hasar_kaydı, kullanıcı_adresi):
 		self.urun_bilgisi = urun_bilgisi
 		self.kullanıc_kimliği = kullanıcı_kimliği
-		self.hasar_kaydı =hasar_kaydı
+		self.hasar_kaydı = hasar_kaydı
 		self.kullanıcı_adresi = kullanıcı_adresi
 
 class block_data:
@@ -21,7 +20,7 @@ class block_data:
 		self.eski_hash = eski_hash 
 		self.hash = self.get_hash()
 	def get_hash(self):
-		return 	hashlib.sha256((str(self.zaman)+ str(self.data)+ str(self.eski_hash)).encode(), (PKCS1_OAEP.new(RSA.import_key(open('public_key.pem').read()))))
+		return 	(hashlib.sha256((str(self.zaman)+ str(self.data)+ str(self.eski_hash)).encode()).hexdigest())
 
 class Block_chain:
 	def __init__(self):
