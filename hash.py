@@ -1,10 +1,7 @@
 # kutuphaneyi import et
 # datetima kutuphanesinden datetime ve date import et
 from datetime import datetime
-from itertools import chain
-from key import veri_sifrele, veri_coz
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import PKCS1_OAEP
+import hashlib
 #kolaylık olması icin bir case olusturuldu 
 print("blok olusturma icin = 1")
 print("block Kontrol icin = 2")
@@ -24,7 +21,7 @@ class block_data:
 		self.eski_hash = eski_hash 
 		self.hash = self.get_hash()
 	def get_hash(self):
-		return 	veri_sifrele((str(self.zaman)+ str(self.data)+ str(self.eski_hash)).encode(), (PKCS1_OAEP.new(RSA.import_key(open('public_key.pem').read()))))
+		return 	hashlib.sha256((str(self.zaman)+ str(self.data)+ str(self.eski_hash)).encode(), (PKCS1_OAEP.new(RSA.import_key(open('public_key.pem').read()))))
 
 class Block_chain:
 	def __init__(self):
