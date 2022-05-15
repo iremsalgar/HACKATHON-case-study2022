@@ -26,7 +26,7 @@ class Block_chain:
 	def __init__(self):
 		self.chain= [self.genessisblock()]
 	def genessisblock(self):
-		return block_data(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"), "first data", "")
+		return block_data(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),  datas('','','',''), '')
 	def block_ekle(self, data):
 		node= block_data(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),data, self.chain[-1].hash)
 		self.chain.append(node)
@@ -36,13 +36,13 @@ class Block_chain:
 				ilk = self.chain[i-1].hash
 				suan = self.chain[i].eski_hash
 				if ilk != suan :
-					return('block GG')
-				return 'saglam'
+					print('block GG')
+				print('saglam')
 	def listleme(self):
 		print("Blokchain = \n")
 		for i in range(len(self.chain)):
 			print("=================\n")
-			print("Block = ", i, "\nHash = ", str(self.chain[i].hash), '\nzaman damgasi = ', str(self.chain[i].zaman), '\ndata = ', str(self.chain[i].data), '\neski hash = ', str(self.chain[i].eski_hash))
+			print("Block = ", i, "\nHash = ", str(self.chain[i].hash), '\nzaman damgasi = ', str(self.chain[i].zaman), '\ndata = ', self.chain[i].data.urun_bilgisi, self.chain[i].data.kullanıc_kimliği, self.chain[i].data.kullanıcı_adresi, self.chain[i].data.hasar_kaydı, '\neski hash = ', str(self.chain[i].eski_hash))
 			print("=================\n")
 
 	
