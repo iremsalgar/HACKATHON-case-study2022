@@ -4,8 +4,7 @@
 proje teknik detayları ve çalıştırılması;
 Kullanılan dil: phyton
 Sürüm: 3
-Kullandığımız kütüphaneler: hashlib, crypto, datetime.
-Not: MacOs crypto kütüphanesini desteklememekte.
+Kullandığımız kütüphaneler: hashlib, datetime.
 
 kütüphanlerin indirme komutları : 
 pip3 install datetime
@@ -18,8 +17,13 @@ Bir block zincirin header kısmı için kullandıklarımız:
 1-technical data
 2-previous blockhash
 3-timestamp
-4-nonce
 
+proje çalıştırıldığında bir adet CLI gelmektedir. 
+1'e basarak bloğa yeni halka eklenmektedir
+2'e basıldığında önceki blok hashi ile yeni bloğun eski hashini karşılaştırmaktadır (şuan çalışmamakta)
+3'e basıldığında daha önce oluşturulmuş tüm zinciri en başında sonuna kadar görüntülemektedir
+
+SAATLERİ İLE TÜM SÜREÇ
 1. SAAT
 Ürünlenin haslendiği bi ortamda bu ürünlerin sahtelerinin rahatça tespit edilebileceğine karar verdik. Bu fikir üstüne geliştirmeler yapmaya ve bunun nasıl kodlanabileceğini araştırmaya başladık.
 
@@ -53,3 +57,9 @@ Artık elimizde temel bir algoritma ve bir web sitesi var.
 
 30. SAAT
 siteye algoritmayı hala entegre etmeye çalışmaktayız. Projemizin demosu tamamlanmış durumda.
+
+HAZIRLAYANLAR:
+Ahmet KOCABAŞ
+İrem Sude SALĞAR
+Turan YANAR
+Yusuf KAVAS
