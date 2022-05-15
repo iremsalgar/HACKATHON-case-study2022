@@ -1,33 +1,30 @@
 # kutuphaneyi import et
-from calendar import c
-from dataclasses import dataclass
-import hashlib 
 # datetima kutuphanesinden datetime ve date import et
-from datetime import datetime, date
-from platform import node
+from datetime import datetime
+from itertools import chain
 from key import veri_sifrele, veri_coz
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 #kolaylık olması icin bir case olusturuldu 
-print("Hash olusturma icin = 1")
-print("Hash Kontrol icin = 2")
-print("Hash çözümleme icin = 3")
+print("blok olusturma icin = 1")
+print("block Kontrol icin = 2")
+print("block çözümleme icin = 3")
+
 class datas:
-	def __init__(self, kullanıcı_kimliği, hasar_kaydı, kullanıcı_adresi):
-		self.kullanıc_kimliği = self.kullanıc_kimliği + " " +kullanıcı_kimliği
-		self.hasar_kaydı =      self.hasar_kaydı + " " +hasar_kaydı
-		self.kullanıcı_adresi = self.kullanıcı_adresi + " " +hasar_kaydı
+	def __init__(self, urun_bilgisi, kullanıcı_kimliği, hasar_kaydı, kullanıcı_adresi):
+		self.urun_bilgisi = urun_bilgisi
+		self.kullanıc_kimliği = kullanıcı_kimliği
+		self.hasar_kaydı =hasar_kaydı
+		self.kullanıcı_adresi = kullanıcı_adresi
 
 class block_data:
 	def __init__(self, zaman, data, eski_hash = "0"):
 		self.zaman = zaman
 		self.data = data
 		self.eski_hash = eski_hash 
-		self.hash = get_hash()
-
+		self.hash = self.get_hash()
 	def get_hash(self):
-		return 	veri_sifrele((self.zaman, self.data, self. eski_hash).encode(), \
-		(PKCS1_OAEP.new(RSA.import_key(open('public_key.pem').read()))))
+		return 	veri_sifrele((str(self.zaman)+ str(self.data)+ str(self.eski_hash)).encode(), (PKCS1_OAEP.new(RSA.import_key(open('public_key.pem').read()))))
 
 class Block_chain:
 	def __init__(self):
@@ -36,9 +33,9 @@ class Block_chain:
 		return block_data(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"), "first data", "")
 	def block_ekle(self, data):
 		node= block_data(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),data, self.chain[-1].hash)
-		self.chain.node
+		self.chain.append(node)
 	def kontrol(self):
-		for i in range(len(Self.chain)):
+		for i in range(len(self.chain)) :
 			if i != 0 :
 				ilk = self.chain[i-1].hash
 				suan = self.chain[i].eski_hash
@@ -48,34 +45,21 @@ class Block_chain:
 	def listleme(self):
 		print("Blokchain = \n")
 		for i in range(len(self.chain)):
-			print("Block => ",i,"\nHash = ", str(self.chain[i].hash),"\nZaman Damgası =", str(self.chain[i].zaman), "\nData = ",str(self.chain[i].data), "\nEski Hash = ", str(self.chain[i].eski_hash))
+			print("=================\n")
+			print("Block = ", i, "\nHash = ", str(self.chain[i].hash), '\nzaman damgasi = ', str(self.chain[i].zaman), '\ndata = ', str(self.chain[i].data), '\neski hash = ', str(self.chain[i].eski_hash))
+			print("=================\n")
 
-class Test: #  kolaylik olması ve kafa karismamasi icin switch case olusturuldu
-	def inp(self, inp):
-		return getattr(self, ('case_' + str(inp)))()# icine yazılan paremetre ile birleştiyor 
-	def case_1(self):
-		block = Block()
-		a = block.çalıştır()
-	def case_2(self):# ------SUAN BU FONKSIYON CALISMIYOR----
-		f = open("d.txt", "r") # 'r' read 
-		kontrol = f.readline()
-		#print(kontrol)
-		inputhash = input("Lutfen kontrol etmek istediginiz Hash kodunu giriniz :")
-		if kontrol == inputhash:
-			print("Hash tanımlı")
-		else:
-			print("HATA")
-		f.close()
-		#--------------------------------------------------------
-	def case_3(self):
-		girdi = input("")
-		sifreli_veri = veri_sifrele(girdi.encode(), PKCS1_OAEP.new(RSA.import_key(open('public_key.pem').read())))
-		cozumlenmis_veri = veri_coz(sifreli_veri, PKCS1_OAEP.new(RSA.import_key(open('private_key.pem').read())))
-		print(cozumlenmis_veri)
+	
 
 
 # main dosyası 
-if __name__ == '__main__':
-	case = Test()
-	while(1) :
-		case.inp(input(""))
+
+urun = Block_chain()
+while(1) :
+	case = (input(""))
+	if case == '1':
+		urun.block_ekle(datas(input("urun bilgisi: "), input("kullanici kimligi: "), input("hasar kaydi: "),input("kullanici adresi: ")))
+	if case == '2':
+		urun.kontrol
+	if case == '3':
+		urun.listleme()

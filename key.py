@@ -3,16 +3,24 @@ from Crypto.PublicKey import RSA
 import base64
 
 def generate_keys():
-	modulus_length = 256*4
+	modulus_length = 256*8
 	privatekey = RSA.generate(modulus_length, Random.new().read)
 	publickey = privatekey.publickey()
 
 	return privatekey, publickey
 
 def veri_sifrele(data , publickey):
-	encrypted_data = publickey.encrypt(data)
-	encoded_encrypted_data = base64.b64encode(encrypted_data)
-	return encoded_encrypted_data
+	i = 0
+	encrypted_data = b''
+	while 1:
+		encrypted_data += publickey.encrypt(data[i:i+180])
+		i+=180
+		if i + 180 > len(data):
+			encoded_encrypted_data = base64.b64encode(encrypted_data)
+			print(len(encoded_encrypted_data))
+			# if len(encoded_encrypted_data) > 345":
+			# 	veri_sifrele(encoded_encrypted_dat"a, publickey)
+			return encoded_encrypted_data
 
 def veri_coz(encoded_encrypted_data, privatekey):
 	decoded_encrypted_data = base64.b64decode(encoded_encrypted_data)
